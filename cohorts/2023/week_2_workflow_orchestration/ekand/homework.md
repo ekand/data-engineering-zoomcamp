@@ -49,7 +49,15 @@ new terminal:
 `prefect agent start -q 'default'`
 Make sure you have the parquet data files for Yellow taxi data for Feb. 2019 and March 2019 loaded in GCS. Run your deployment to append this data to your BiqQuery table. How many rows did your flow code process?
 
-- 14,851,920
+notes   
+hysterical-mantis  
+Number of rows: 7019375 
+eggplant-porpoise
+Number of rows: 7832545
+
+total: 14851920
+
+- 14,851,920  * * *
 - 12,282,990
 - 27,235,753
 - 11,338,483
@@ -68,10 +76,19 @@ How many rows were processed by the script?
 
 - 88,019
 - 192,297
-- 88,605
+- 88,605  * * *
 - 190,225
 
 
+notes:
+`prefect deployment build -n dep-gcs-to-bq -sb github/my-github-block etl_gcs_to_bq.py:parent_etl_flow -a`
+run the dep-gcs-to-bq with november, 2020, green
+```sql
+-- SELECT count(*) FROM `dtc-de-376923.my_dataset.more-rides` ;
+-- truncate table `dtc-de-376923.my_dataset.more-rides`;
+SELECT count(*) FROM `dtc-de-376923.my_dataset.more-rides` ;
+-- 88605
+```
 
 ## Question 5. Email or Slack notifications
 
@@ -99,8 +116,12 @@ How many rows were processed by the script?
 - `125,268`
 - `377,922`
 - `728,390`
-- `514,392`
+- `514,392`  * * *
 
+notes:
+did set up email notifs with prefect cloud.
+notes:
+Number of rows: 514392
 
 ## Question 6. Secrets
 
@@ -108,9 +129,10 @@ Prefect Secret blocks provide secure, encrypted storage in the database and obfu
 
 - 5
 - 6
-- 8
+- 8  * * *
 - 10
 
+8 characters
 
 ## Submitting the solutions
 

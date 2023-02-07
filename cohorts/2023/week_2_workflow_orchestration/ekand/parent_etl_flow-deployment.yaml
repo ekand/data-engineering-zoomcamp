@@ -1,17 +1,14 @@
 ###
 ### A complete description of a Prefect Deployment for flow 'parent-etl-flow'
 ###
-name: etl2
+name: dep-gcs-to-bq
 description: null
-version: c06afbbb298a98423bf3ad5b1176475c
+version: e2c44f45fb83d0a9910d46d7880ba1a0
 # The work queue that will handle this deployment's runs
 work_queue_name: default
 tags: []
 parameters: {}
-schedule:
-  cron: '0 5 1 * * '
-  timezone: null
-  day_or: true
+schedule: null
 infra_overrides: {}
 infrastructure:
   type: process
@@ -29,8 +26,16 @@ infrastructure:
 ###
 flow_name: parent-etl-flow
 manifest_path: null
-storage: null
-path: /Users/erik/workspace/github.com/ekand/data-engineering-zoomcamp/cohorts/2023/week_2_workflow_orchestration/ekand
+storage:
+  repository: https://github.com/ekand/prefect_flow_taxi.git
+  reference: null
+  access_token: null
+  _block_document_id: 17763cf3-acb7-460f-bfae-ac28b6460fff
+  _block_document_name: my-github-block
+  _is_anonymous: false
+  block_type_slug: github
+  _block_type_slug: github
+path: ''
 entrypoint: etl_gcs_to_bq.py:parent_etl_flow
 parameter_openapi_schema:
   title: Parameters
@@ -38,22 +43,20 @@ parameter_openapi_schema:
   properties:
     months:
       title: months
-      default:
-      - 1
-      - 2
       position: 0
       type: array
       items:
         type: integer
     year:
       title: year
-      default: 2021
       position: 1
       type: integer
     color:
       title: color
-      default: green
       position: 2
       type: string
-  required: null
+  required:
+  - months
+  - year
+  - color
   definitions: null
